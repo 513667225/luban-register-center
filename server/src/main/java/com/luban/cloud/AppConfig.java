@@ -16,8 +16,7 @@ import java.util.Arrays;
 
 @Configuration
 //条件注入
-@ConditionalOnBean(value = AppConfig.Marker.class)
-//@Import()
+@ConditionalOnBean(value = ServerAutoConfigMarker.Marker.class)
 @EnableConfigurationProperties(RegisterConfigProperties.class)
 public class AppConfig {
 
@@ -54,10 +53,7 @@ public class AppConfig {
         return  register;
     }
 
-    //标识
-    public class Marker{
 
-    }
 
 
 

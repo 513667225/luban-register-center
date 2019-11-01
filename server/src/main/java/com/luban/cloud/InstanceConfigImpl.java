@@ -19,4 +19,9 @@ public class InstanceConfigImpl implements InstanceConfig {
     public String getRegisterUrl() {
         return registerConfigProperties.getRegisterUrl();
     }
+
+    @Override
+    public long getExpelTimerMs() {
+        return registerConfigProperties.getExpelTimerMs();
+    }
 }

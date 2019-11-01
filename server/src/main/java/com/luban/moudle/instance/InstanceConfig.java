@@ -6,5 +6,7 @@ public interface InstanceConfig {
 
         String getRegisterUrl();
 
+        long getExpelTimerMs();
+
 
 }

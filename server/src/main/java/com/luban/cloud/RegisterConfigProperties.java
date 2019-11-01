@@ -2,16 +2,29 @@ package com.luban.cloud;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.stereotype.Component;
 
-@ConfigurationProperties("luban.register.instance")
+
+@Component
+//@ConfigurationProperties("luban.register.instance")
 public class RegisterConfigProperties {
 
     private String hostname;
 
-    @Value("${luban.register.client.url}")//127.0.0.1 , 127.0.0.2,127.0.0.3
+//    @Value("${luban.register.client.url}")//127.0.0.1 , 127.0.0.2,127.0.0.3
     private String registerUrl;
 
+//    @Value("${expelTimerMs}")
+    private int expelTimerMs;
 
+    public int getExpelTimerMs() {
+        return expelTimerMs;
+    }
+
+    public void setExpelTimerMs(int expelTimerMs) {
+        this.expelTimerMs = expelTimerMs;
+    }
 
     public String getHostname() {
         return hostname;
