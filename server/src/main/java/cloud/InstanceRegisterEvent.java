@@ -1,4 +1,4 @@
-package com.luban.cloud;
+package cloud;
 
 import com.luban.moudle.instance.InstanceInfo;
 import org.springframework.context.ApplicationEvent;

@@ -1,13 +1,11 @@
-package com.luban.cloud;
+package cloud;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 
 @Component
-//@ConfigurationProperties("luban.register.instance")
+@ConfigurationProperties("luban.register.instance")
 public class RegisterConfigProperties {
 
     private String hostname;

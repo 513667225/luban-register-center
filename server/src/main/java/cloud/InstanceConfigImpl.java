@@ -1,10 +1,8 @@
-package com.luban.cloud;
+package cloud;
 
 import com.luban.moudle.instance.InstanceConfig;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
-@Component
 public class InstanceConfigImpl implements InstanceConfig {
 
     @Autowired

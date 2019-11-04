@@ -24,10 +24,18 @@ import java.util.Map;
  */
 
 public class LuBanDispatcherServlet extends HttpServlet {
-    String projectPath = this.getClass().getResource("/").getPath();
-    String prefix = "";
-    String suffix = "";
-    Map<String,Method>  methodMap = new HashMap();
+    private String projectPath = this.getClass().getResource("/").getPath();
+    private String prefix = "";
+    private String suffix = "";
+    private Map<String,Method>  methodMap = new HashMap();
+
+    private ResourceInstance resourceInstance;
+
+
+    public LuBanDispatcherServlet(ResourceInstance resourceInstance){
+        this.resourceInstance = resourceInstance;
+    }
+
 
     //初始化
     @Override
@@ -71,7 +79,11 @@ public class LuBanDispatcherServlet extends HttpServlet {
                     boolean annotationPresent = clazz.isAnnotationPresent(Resources.class);
                     if (annotationPresent){
                         ResourcesMapping annotation = clazz.getAnnotation(ResourcesMapping.class);
-                        String classRequestMappingPath = annotation.value();
+
+                        String classRequestMappingPath = "";
+                        if (annotation != null) {
+                            classRequestMappingPath = annotation.value();
+                        }
                         //解析所有方法
                         for (Method method : clazz.getMethods()) {
                             ResourcesMapping methodResourcesMapping = method.getAnnotation(ResourcesMapping.class);
@@ -127,13 +139,16 @@ public class LuBanDispatcherServlet extends HttpServlet {
                     }
                 }
                 Class<?> declaringClass = method.getDeclaringClass();
-                Object invoke = method.invoke(declaringClass.newInstance(), objects);
+                Object o = resourceInstance.getResourceInstances().get(declaringClass);
+                if (o==null){
+                    o = declaringClass.newInstance();
+                }
+                Object invoke = method.invoke(o, objects);
                 String s = String.valueOf(invoke);
                 if (method.isAnnotationPresent(ResponseResources.class)){
                     response.getWriter().write(s);
                 }else{
                     if (invoke.getClass().equals(String.class)){
-
                         request.getRequestDispatcher(prefix+s+suffix).forward(request,response);
 //                    response.sendRedirect();
                     }

@@ -1,10 +1,11 @@
-package com.luban.cloud;
+package cloud;
 
 import com.luban.moudle.instance.InstanceInfo;
 import com.luban.moudle.register.SyncInstanceRegister;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationEvent;
+
 //发布事件
 public class EventInstanceRegister extends SyncInstanceRegister {
 

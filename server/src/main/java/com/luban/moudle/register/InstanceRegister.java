@@ -9,7 +9,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class InstanceRegister implements Register {
 
     private ConcurrentHashMap<String,Map<String,Lease<InstanceInfo>>>
-                                                                        register = new ConcurrentHashMap<>();
+                                                                        register = new ConcurrentHashMap();
 
 
     @Override

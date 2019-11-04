@@ -1,25 +1,26 @@
-package com.luban.cloud;
+package cloud;
 
 import com.luban.moudle.controller.ApplicationController;
 import com.luban.moudle.instance.InstanceConfig;
 import com.luban.moudle.register.Register;
 import com.luban.moudle.servlet.LuBanDispatcherServlet;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import com.luban.moudle.servlet.ResourceInstance;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
 
 import javax.servlet.Servlet;
 import java.util.Arrays;
 
 @Configuration
-//条件注入
-@ConditionalOnBean(value = ServerAutoConfigMarker.Marker.class)
 @EnableConfigurationProperties(RegisterConfigProperties.class)
 public class AppConfig {
 
+
+    public AppConfig(){
+        System.out.println("----------------");
+    }
 
 
     @Bean
@@ -34,15 +35,23 @@ public class AppConfig {
     }
 
     @Bean
-    public ServletRegistrationBean servletRegistrationBean(){
+    public ServletRegistrationBean servletRegistrationBean(ResourceInstance resourceInstance){
         ServletRegistrationBean<Servlet> servletServletRegistrationBean = new ServletRegistrationBean<>();
-        LuBanDispatcherServlet luBanDispatcherServlet = new LuBanDispatcherServlet();
+        LuBanDispatcherServlet luBanDispatcherServlet = new LuBanDispatcherServlet(resourceInstance);
         servletServletRegistrationBean.setServlet(luBanDispatcherServlet);
         servletServletRegistrationBean.setLoadOnStartup(1);
         servletServletRegistrationBean.setUrlMappings(Arrays.asList("*.do"));
 //      servletServletRegistrationBean.setUrlMappings();
 
         return servletServletRegistrationBean;
+    }
+
+    @Bean
+    public ResourceInstance resourceInstance(ApplicationController applicationController){
+        ResourceInstance resourceInstance = new ResourceInstanceImpl();
+        resourceInstance.getResourceInstances().put(ApplicationController.class,applicationController);
+        return resourceInstance;
+
     }
 
 
