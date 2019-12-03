@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>luban-register-center</artifactId>
+        <groupId>luban-register-center</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>server-springboot-start</artifactId>
+
+    <dependencies>
+        <!-- 这是我本地打包的依赖 你们需要自己把server项目打包成一个maven依赖才行！-->
+        <!--打包命令：mvn install:install-file -Dfile=C:\server-1.0-SNAPSHOT.jar -DgroupId=com.luban.server -DartifactId=luban-server -Dversion=4.0.0 -Dpackaging=jar
+            -Dfile:jar包所在磁盘目录 : 目录不能有空格和中文
+            -DgroupId: 依赖的groupId
+            -DartifactId： 依赖的artifactId
+            -Dversion： 依赖的版本号 ps:你自己指定
+            -Dpackaging=jar 依赖的是jar包还是别的 ps:可以是一个pom文件的
+    -->
+
+        <dependency>
+            <groupId>com.luban.server</groupId>
+            <artifactId>luban-server</artifactId>
+            <version>2.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>

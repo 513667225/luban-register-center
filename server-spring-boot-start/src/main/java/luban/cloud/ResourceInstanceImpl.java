@@ -1,4 +1,4 @@
-package cloud;
+package luban.cloud;
 
 import com.luban.moudle.servlet.ResourceInstance;
 

@@ -3,6 +3,7 @@ package com.luban.moudle.controller;
 
 import com.luban.moudle.annotation.Resources;
 import com.luban.moudle.annotation.ResourcesMapping;
+import com.luban.moudle.annotation.ResponseResources;
 import com.luban.moudle.instance.InstanceConfig;
 import com.luban.moudle.instance.InstanceInfo;
 import com.luban.moudle.instance.Lease;
@@ -23,9 +24,10 @@ public class ApplicationController {
 
 
 
-
+        ///register.do put Map</register.do,方法对象>
     @ResourcesMapping("/register.do")
-    public R register(InstanceInfo instanceInfo, boolean isSync) {
+    @ResponseResources
+    public R register(InstanceInfo instanceInfo, String isSync) {
         if (isNull(instanceInfo.getHostName())) {
             return R.error("HostName 不能为空").set("code",400);
         } else if (isNull(instanceInfo.getInstanceId())) {
@@ -42,30 +44,32 @@ public class ApplicationController {
         if (instanceInfo.getTimeLimit()>0) {
             timeLimit = instanceInfo.getTimeLimit();
         }
-        register.register(instanceInfo,timeLimit,isSync);
+        register.register(instanceInfo,timeLimit,isSync==null?false:isSync.equals("true"));
         return R.success();
     }
 
 
     @ResourcesMapping("/renew.do")
-    public R renew(String appName,String instanceId,boolean isSync){
-        if (isNull(appName)){
-            return R.error("appName 不能为空").set("code",400);
+    @ResponseResources
+    public R renew(String instanceName,String instanceId,String isSync){
+        if (isNull(instanceName)){
+            return R.error("instanceName 不能为空").set("code",400);
         }else if(isNull(instanceId)){
             return R.error("InstanceId 不能为空").set("code",400);
         }
-        register.renew(appName,instanceId,isSync);
+        register.renew(instanceName,instanceId,isSync==null?false:isSync.equals("true"));
         return R.success();
     }
 
     @ResourcesMapping("/cancel.do")
-    public R cancel(String appName,String instanceId,boolean isSync){
-        if (isNull(appName)){
-            return R.error("appName 不能为空").set("code",400);
+    @ResponseResources
+    public R cancel(String instanceName,String instanceId,String isSync){
+        if (isNull(instanceName)){
+            return R.error("instanceName 不能为空").set("code",400);
         }else if(isNull(instanceId)){
             return R.error("instanceId 不能为空").set("code",400);
         }
-        register.cancel(appName,instanceId,isSync);
+        register.cancel(instanceName,instanceId,isSync==null?false:isSync.equals("true"));
         return  R.success();
     }
 

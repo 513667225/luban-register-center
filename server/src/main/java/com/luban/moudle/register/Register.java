@@ -12,4 +12,6 @@ public interface Register {
     void cancel(String appName,String instanceId,boolean isSync);
 
 
+    void eviction();
+
 }

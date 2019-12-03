@@ -1,4 +1,4 @@
-package cloud;
+package luban.cloud;
 
 import org.springframework.context.annotation.Import;
 

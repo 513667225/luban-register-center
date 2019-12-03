@@ -15,6 +15,23 @@ public class InstanceInfo {
 
     private int timeLimit;
 
+    private String port;
+
+    private InstanceStatus instanceStatus;
+
+    @Override
+    public String toString() {
+        return "InstanceInfo{" +
+                "ipAddr='" + ipAddr + '\'' +
+                ", hostName='" + hostName + '\'' +
+                ", instanceId='" + instanceId + '\'' +
+                ", instanceName='" + instanceName + '\'' +
+                ", timeLimit=" + timeLimit +
+                ", port='" + port + '\'' +
+                ", instanceStatus=" + instanceStatus +
+                '}';
+    }
+
     public int getTimeLimit() {
         return timeLimit;
     }
@@ -71,9 +88,7 @@ public class InstanceInfo {
         this.instanceStatus = instanceStatus;
     }
 
-    private String port;
 
-    private InstanceStatus instanceStatus;
 
 
 

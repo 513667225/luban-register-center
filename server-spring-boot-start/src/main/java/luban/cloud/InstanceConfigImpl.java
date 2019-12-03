@@ -1,4 +1,4 @@
-package cloud;
+package luban.cloud;
 
 import com.luban.moudle.instance.InstanceConfig;
 import org.springframework.beans.factory.annotation.Autowired;

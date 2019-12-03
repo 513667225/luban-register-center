@@ -1,7 +1,9 @@
-package cloud;
+package luban.cloud;
 
 
 import com.luban.moudle.instance.InstanceConfig;
+import com.luban.moudle.register.Register;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.SmartLifecycle;
 
 import java.util.Timer;
@@ -14,7 +16,11 @@ public class ServerContext implements SmartLifecycle {
 
     private boolean isRunning = false;
 
+    @Autowired
     private InstanceConfig instanceConfig;
+
+    @Autowired
+    private Register register;
 
 
 //    public static void main(String[] args)  throws Exception{
@@ -25,9 +31,6 @@ public class ServerContext implements SmartLifecycle {
 //    }
 
 
-    public  ServerContext(InstanceConfig instanceConfig){
-        this.instanceConfig = instanceConfig;
-    }
 
     @Override
     public boolean isAutoStartup() {
@@ -48,13 +51,14 @@ public class ServerContext implements SmartLifecycle {
                 timer.scheduleAtFixedRate(new TimerTask() {
                     @Override
                     public void run() {
-
+                        register.eviction();
                     }
-                },0,instanceConfig.getExpelTimerMs());
-
+                },instanceConfig.getExpelTimerMs(),instanceConfig.getExpelTimerMs());
             }
         }.start();
     }
+
+
 
     @Override
     public void stop() {

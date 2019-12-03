@@ -1,4 +1,4 @@
-package cloud;
+package luban.cloud;
 
 import com.luban.moudle.instance.InstanceInfo;
 import com.luban.moudle.register.SyncInstanceRegister;
@@ -14,7 +14,7 @@ public class EventInstanceRegister extends SyncInstanceRegister {
 
     public void handleRegisterEvent(InstanceInfo info,int timeLimit,boolean isSync){
         pushEvent(new InstanceRegisterEvent(this,info,timeLimit,isSync));
-        super.register(info,timeLimit,isSync);
+//        super.register(info,timeLimit,isSync);
     }
 
     public void pushEvent(ApplicationEvent event){
