@@ -23,8 +23,7 @@ public class ApplicationController {
     }
 
 
-
-        ///register.do put Map</register.do,方法对象>
+    //测试链接http://localhost/register.do?ipAddr=127.0.0.1&hostName=xxx&instanceId=clinet-001&instanceName=client&timeLimit=4000&port=8080
     @ResourcesMapping("/register.do")
     @ResponseResources
     public R register(InstanceInfo instanceInfo, String isSync) {
