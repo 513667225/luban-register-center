@@ -22,6 +22,9 @@ maven打包本地依赖教学我写在了server 的pom里面 也可以自行百�
 视频未解释的内容：
   1:LubanDispatcherServlet 里面加了解析jar包的改动 主要是解决 吧模块打成jar包之后解析不到class文件(主要是解析不到ApplicationController)的问题
   2: 吧原来server里面的cloud包独立出来成为server-spring-boot-start模块
+
+
+client暂时还未去设计 等有时间的时候会提交 你们也可以根据server来扩展client
   
   
   
